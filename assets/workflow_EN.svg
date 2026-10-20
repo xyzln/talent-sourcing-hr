@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1244 330" width="1244" height="330" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'PingFang SC', 'Noto Sans Arabic', 'Microsoft YaHei', sans-serif">
+<rect x="0" y="0" width="1244" height="330" rx="18" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+<text x="622.0" y="38" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">Five-Step Workflow · From Requirements to Sourcing Report</text>
+<rect x="10" y="64" width="216" height="190" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<circle cx="118.0" cy="100" r="19" fill="#0d9488"/>
+<text x="118.0" y="107" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">1</text>
+<text x="118.0" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Structure</text>
+<text x="118.0" y="184" text-anchor="middle" font-size="13.5" fill="#475569">Turn business requirements</text>
+<text x="118.0" y="206" text-anchor="middle" font-size="13.5" fill="#475569">into a talent profile</text>
+<path d="M 232 150.0 L 250 159.0 L 232 168.0" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="262" y="64" width="216" height="190" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<circle cx="370.0" cy="100" r="19" fill="#0d9488"/>
+<text x="370.0" y="107" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">2</text>
+<text x="370.0" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Strategy</text>
+<text x="370.0" y="184" text-anchor="middle" font-size="13.5" fill="#475569">Keyword matrix +</text>
+<text x="370.0" y="206" text-anchor="middle" font-size="13.5" fill="#475569">channel layering</text>
+<path d="M 484 150.0 L 502 159.0 L 484 168.0" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="514" y="64" width="216" height="190" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<circle cx="622.0" cy="100" r="19" fill="#0d9488"/>
+<text x="622.0" y="107" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">3</text>
+<text x="622.0" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Search</text>
+<text x="622.0" y="184" text-anchor="middle" font-size="13.5" fill="#475569">Multi-round web search</text>
+<text x="622.0" y="206" text-anchor="middle" font-size="13.5" fill="#475569">with cross-verification</text>
+<path d="M 736 150.0 L 754 159.0 L 736 168.0" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="766" y="64" width="216" height="190" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<circle cx="874.0" cy="100" r="19" fill="#0d9488"/>
+<text x="874.0" y="107" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">4</text>
+<text x="874.0" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Match</text>
+<text x="874.0" y="184" text-anchor="middle" font-size="13.5" fill="#475569">0-5 behavioral anchors,</text>
+<text x="874.0" y="206" text-anchor="middle" font-size="13.5" fill="#475569">weighted scoring</text>
+<path d="M 988 150.0 L 1006 159.0 L 988 168.0" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1018" y="64" width="216" height="190" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<circle cx="1126.0" cy="100" r="19" fill="#0d9488"/>
+<text x="1126.0" y="107" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">5</text>
+<text x="1126.0" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Report</text>
+<text x="1126.0" y="184" text-anchor="middle" font-size="13.5" fill="#475569">Conclusion-first report</text>
+<text x="1126.0" y="206" text-anchor="middle" font-size="13.5" fill="#475569">with a 72-hour action list</text>
+</svg>
