@@ -1,7 +1,7 @@
 ---
 name: recruit-web-sourcing
 description: 企业招聘寻访工作流——把寻访任务交给一个精准匹配的 agent 临时工。当用户提供岗位需求或业务要求，需要全网检索人才供给、按能力维度精准匹配候选线索、输出寻访报告时使用。覆盖需求结构化、检索策略设计、多轮全网检索、能力建模评分到报告输出的完整五步流程。
-slug: recruit-web-sourcing
+slug: recruit-web-sourcing-cn
 displayName: 招聘寻访官·全网寻访与能力匹配
 version: 1.0.0
 summary: 精准匹配的 agent 临时工：全网检索 + 能力匹配五步工作流

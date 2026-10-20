@@ -126,7 +126,7 @@ python3 register_expert.py ~/.workbuddy/plugins/marketplaces/my-experts/plugins/
 
 | 語言 | README | SkillHub 技能 |
 |:---|:---|:---|
-| 🇨🇳 简体中文 | [README_CN.md](README_CN.md) | `recruit-web-sourcing` |
+| 🇨🇳 简体中文 | [README_CN.md](README_CN.md) | `recruit-web-sourcing-cn` |
 | 🇹🇼 繁體中文 | [README_TW.md](README_TW.md) | `recruit-web-sourcing-tw` |
 | 🇬🇧 English | [README_EN.md](README_EN.md) | `recruit-web-sourcing-en` |
 | 🇷🇺 Русский | [README_RU.md](README_RU.md) | `recruit-web-sourcing-ru` |
