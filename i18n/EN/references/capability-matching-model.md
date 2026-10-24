@@ -1,73 +1,74 @@
-# Capability Modeling & Precision Matching Model
+# Job → Agent Design Mapping Model
 
-> Used with Step 4 of the `recruit-web-sourcing` skill. Goal: turn "is this a fit?" from a gut call into a reproducible score.
+> Used at Steps 3 and 4 of the `recruit-web-sourcing` skill. Goal: translate "job design" into "agent design", and verify design completeness with a reproducible coverage score.
 
-## 1. Decomposing Capability Dimensions
+## 1. Job Design Elements → Agent Design Elements
 
-Extract 5-8 capability dimensions from the JD and business requirements, grouped into three categories:
+| Job design element | Agent design element | Where it lands |
+|--------------------|----------------------|----------------|
+| Role positioning (what this role is for) | Agent positioning | frontmatter description + persona opening |
+| Responsibilities (what they do) | Skill list and workflow steps | skills array + workflow section |
+| Requirements (what makes them competent) | Capability anchors and guardrails | persona core capabilities + iron rules/notes |
+| Workflow (how, in what order) | Workflow steps and checkpoints | workflow section (each step has actions and outputs) |
+| Collaboration (who they deal with) | Input/output spec and handoff protocol | output spec + trigger/exit conditions |
+| KPIs (what "done well" means) | Acceptance criteria and quality bars | the pass line in the output spec |
+| Toolstack (what they use) | Tool and script list | scripts/ + reference manuals + tool notes |
 
-| Category | Meaning | Examples |
-|----------|---------|----------|
-| Hard skills | The craft of doing the job | distributed architecture design, SQL optimization, campaign strategy |
-| Business soft skills | The craft of getting things done | cross-functional driving, client negotiation, team mentoring |
-| Culture fit | The baseline that matches the org | startup-pace adaptability, data-driven decisions, open collaboration |
+**Mapping rules**:
+- Elements present in the real job must have a corresponding design in the agent; elements absent from the job must not be invented into the agent
+- Every mapping must trace back to job research evidence (source + retrieval date)
+- One job element may map to multiple agent elements, but every agent element must have at least one job source
 
-**Decomposition rules**:
-- Every dimension must be observable, askable, and verifiable; reject vague words like "has potential" or "feels right"
-- A dimension belongs to one category only; if the business owner stressed it verbally but it is missing from the JD, record it and note the source
-- Keep 5-8 dimensions: fewer than 5 risks misses; more than 8 dilutes weights
+## 2. Agent Design Coverage Anchors (0-5)
 
-## 2. The 0-5 Behavioral Anchor Scale
+Score each agent design dimension against job research evidence:
 
-Define each dimension in five levels of "what it looks like"; score by matching evidence to the anchor:
+| Score | Level | Behavioral anchor (generic) |
+|-------|-------|----------------------------|
+| 5 | Full coverage | All job elements translated, every one backed by evidence; ready to ship |
+| 4 | Complete | All major elements covered; details could be polished |
+| 3 | Basically covered | Main body covered, but with a clear small gap (missing acceptance criteria / trigger, etc.) |
+| 2 | Partially covered | Only about half the elements covered; several filled in by feel |
+| 1 | Nominal | The dimension is mentioned but has no executable content |
+| 0 | No evidence | No evidence found in the job research to support this design (doesn't mean it shouldn't exist, means it can't be verified) |
 
-| Score | Level | Behavioral anchor (generic wording) |
-|-------|-------|------------------------------------|
-| 5 | Expert | Verifiable benchmark output (led same-scale/same-difficulty projects; results recognized by industry or company) |
-| 4 | Proficient | Independently delivered similar work end-to-end; stable quality; little guidance needed |
-| 3 | Competent | Completed similar work under guidance; handles routine scenarios |
-| 2 | Beginner | Exposure without independent delivery, or training/course-level experience only |
-| 1 | Aware | Conceptual knowledge only; no practice |
-| 0 | No evidence | No evidence found in public information (not "cannot do" - means "cannot verify") |
+**Evidence rule**: no evidence = 0 points, marked "to be verified"; after supplementary searches produce evidence, scores may be updated, keeping the scoring history.
 
-**Anchor example ("high-concurrency system design")**:
-- 5: Led architecture design for a system serving 10M+ requests/day; public talk or verifiable case
-- 4: Independently owned core modules of a million-request system
-- 3: Participated in high-concurrency development, owning several modules
-- 2: Learning/practice projects only; never in production
-- 1: Course-level or conceptual knowledge
-- 0: No relevant information
+## 3. Common Design Dimensions and Weights
 
-**Evidence rule**: no evidence = 0 and flagged "to verify"; evidence obtained later via interview/reference check can update the score - keep the score history.
+Extract 5-8 design dimensions from the job design research, in three tiers:
 
-## 3. Weighting
+| Weight tier | Meaning | Suggested weight | Scoring rule |
+|-------------|---------|------------------|--------------|
+| Core (hard veto) | Without it the agent doesn't hold up | 0.25-0.35 | Score ≤2 → VETO flag; total still computed but the conclusion must flag it |
+| Plus | Significantly improves agent quality | 0.10-0.20 | Counted normally |
+| Reference | Affects marginal judgment | 0.05-0.10 | Counted normally |
 
-| Weight level | Meaning | Suggested weight | Scoring rule |
-|--------------|---------|------------------|--------------|
-| Must-have (hard veto) | Failing it means overall mismatch | 0.25-0.35 | Score <=2 -> flag VETO; total still computed but the conclusion must call it out |
-| Plus | Significant exceeders get priority | 0.10-0.20 | Counted normally |
-| Reference | Influences marginal judgment | 0.05-0.10 | Counted normally |
+**Typical dimensions** (tailor to the job; you don't need all):
+- Core: persona clarity, responsibility coverage, workflow completeness
+- Plus: clear collaboration interface, executable acceptance criteria, complete tooling
+- Reference: output format discipline, timestamping mechanism
 
-Weights must sum to 1.0; set 1-2 must-haves - more than 2 means the profile has not converged.
+Weights must sum to 1.0; usually 1-2 core items; more than 2 means the design hasn't converged.
 
-## 4. Match Score Computation and Grading
+## 4. Coverage Calculation and Grades
 
-Use `scripts/match_score.py`: weighted average (0-5) x 20 = match score (0-100).
+Use `scripts/match_score.py`: weighted average (0-5) × 20 = coverage percentage.
 
-| Score | Grade | Recommended action |
-|-------|-------|--------------------|
-| >=85 | A Priority outreach | Reach out immediately with tailored messaging |
-| 70-84 | B Developable | Reach out while sizing the cost and timeline of closing gaps |
-| 50-69 | C Caution | Fallback option only when supply is tight; state the gaps explicitly |
-| <50 | D No match | Keep off the sourcing list |
-| Any must-have <=2 | Hard veto | Defaults to D regardless of total, unless the business owner explicitly waives |
+| Coverage | Grade | Action |
+|----------|-------|--------|
+| ≥85 | A Ship it | Build directly as expert package / skill / sub-agent per the spec |
+| 70-84 | B Basically usable | Ship while closing gap items (more research or more design) |
+| 50-69 | C Has gaps | Finish research or design first, then ship |
+| <50 | D Mismatch | Return to step 2 and re-research the role; don't rush to generate |
+| Any core item ≤2 | Hard veto | Default D regardless of total, unless the requester explicitly waives |
 
 ## 5. Using match_score.py
 
 ```bash
-# Input JSON (file or stdin), outputs the match report
+# Input JSON (file or stdin), output coverage report
 python scripts/match_score.py scores.json
-echo '{"dimensions":[{"name":"High-concurrency system design","weight":0.3,"level":"must","score":4,"evidence":"Led architecture for a 10M+ requests/day system"},{"name":"Team mentoring","weight":0.2,"level":"plus","score":3,"evidence":"Led a team of 5"}]}' | python scripts/match_score.py
+echo '{"dimensions":[{"name":"Persona clarity","weight":0.3,"level":"must","score":4,"evidence":"Role definition is clear: owns user-behavior analysis and outputs actionable conclusions"},{"name":"Responsibility coverage","weight":0.3,"level":"must","score":5,"evidence":"All six responsibilities mapped to workflow steps"},{"name":"Complete tooling","weight":0.2,"level":"plus","score":3,"evidence":"Scoring script exists; report template tool missing"},{"name":"Output format discipline","weight":0.2,"level":"ref","score":2,"evidence":"Only verbal description; no template defined"}]}' | python scripts/match_score.py
 ```
 
 Input format:
@@ -76,21 +77,22 @@ Input format:
 {
   "dimensions": [
     {
-      "name": "High-concurrency system design",
+      "name": "Persona clarity",
       "weight": 0.3,
       "level": "must | plus | ref",
       "score": 4,
-      "evidence": "Led architecture for a 10M+ requests/day system"
+      "evidence": "Role definition is clear: owns user-behavior analysis and outputs actionable conclusions"
     }
   ]
 }
 ```
 
-Output: total match score, grade, per-dimension breakdown, strengths (>=4), gaps (<3), and hard-veto flags.
+Output: coverage total, grade, per-dimension details, strong-coverage items (≥4), gap items (<3), and veto flags.
 
 ## 6. Usage Discipline
 
-- Score on public-channel evidence only; no guessing; the evidence field is mandatory
-- All candidate leads for the same role use the same dimensions and weights to stay comparable
-- When business requirements change, update the profile and weights first, then re-score - no moving goalposts
-- Always report match score together with a confidence note (evidence sufficient / partially pending)
+- Scores are based on job research evidence only; no guessing; the evidence field is mandatory
+- All design dimensions of the same agent use the same weights for comparability
+- When job research updates, change the evidence first, then the scores; no "moving the goalposts"
+- Always state confidence alongside the coverage score (evidence sufficient / partially to be verified)
+- Low coverage doesn't mean the job research failed - it may just need more search rounds: add research before adding design

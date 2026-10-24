@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Калькулятор оценки соответствия кандидатов (русский интерфейс)
+"""Калькулятор покрытия дизайна агента (русский интерфейс)
 
-Оценивает лиды-кандидатов по измерениям компетенций (на основе доказательств);
-выводит взвешенную оценку, grade, сильные стороны, пробелы и флаги жёсткого вето.
-Используется на шаге 4 навыка recruit-web-sourcing.
+Оценивает измерения дизайна агента (на основе доказательств исследования
+должности); выводит взвешенное покрытие, grade, сильные позиции, пробелы и
+флаги жёсткого вето. Используется на шаге 4 навыка recruit-web-sourcing.
 
 Использование:
     python match_score.py scores.json          # чтение из файла
@@ -15,11 +15,11 @@
 {
   "dimensions": [
     {
-      "name": "Проектирование высоконагруженных систем",
+      "name": "Чёткость позиционирования",
       "weight": 0.3,
       "level": "must | plus | ref",
       "score": 4,
-      "evidence": "Руководил архитектурой системы на 10М+ запросов в сутки"
+      "evidence": "Определение роли чёткое: анализ поведения пользователей и выводы, пригодные к действию"
     }
   ]
 }
@@ -27,7 +27,7 @@
 Правила:
     - сумма весов должна быть 1.0 (иначе автонормализация с предупреждением)
     - score принимает значения 0-5; измерение уровня must с оценкой <=2 даёт жёсткое вето
-    - оценка = взвешенное среднее (0-5) x 20; grade A>=85, B>=70, C>=50, D<50
+    - покрытие = взвешенное среднее (0-5) x 20; grade A>=85, B>=70, C>=50, D<50
 """
 
 import argparse
@@ -35,7 +35,7 @@ import json
 import sys
 
 VALID_LEVELS = ("must", "plus", "ref")
-LEVEL_NAMES = {"must": "обяз.", "plus": "желат.", "ref": "справ."}
+LEVEL_NAMES = {"must": "ядро", "plus": "плюс", "ref": "справ."}
 
 
 def load_input(path):
@@ -97,13 +97,13 @@ def compute(data, total_weight):
 
     total = round(weighted_sum * 20)
     if vetoed:
-        grade = "D (ЖЁСТКОЕ ВЕТО)"
+        grade = "D (ПРОПУСК В ЯДРЕ)"
     elif total >= 85:
-        grade = "A Приоритетный контакт"
+        grade = "A Можно внедрять"
     elif total >= 70:
-        grade = "B Развиваемый"
+        grade = "B В целом работоспособно"
     elif total >= 50:
-        grade = "C Осторожно"
+        grade = "C Есть пробелы"
     else:
         grade = "D Не подходит"
 
@@ -123,9 +123,9 @@ def compute(data, total_weight):
 def render(result):
     lines = []
     lines.append("=" * 56)
-    lines.append(f"ОЦЕНКА СООТВЕТСТВИЯ: {result['total']}/100    GRADE: {result['grade']}")
+    lines.append(f"ПОКРЫТИЕ ДИЗАЙНА: {result['total']}/100    GRADE: {result['grade']}")
     if result["vetoed"]:
-        lines.append("! ЖЁСТКОЕ ВЕТО: обязательное измерение оценено ≤2; по умолчанию grade D, если бизнес явно не сделал исключение")
+        lines.append("! ЖЁСТКОЕ ВЕТО: ключевое измерение дизайна оценено ≤2; по умолчанию grade D, если заказчик явно не сделал исключение")
     if result["weight_normalized"]:
         lines.append("! Веса в сумме не дают 1.0; выполнена автонормализация")
     lines.append("=" * 56)
@@ -134,9 +134,9 @@ def render(result):
         lines.append(f"{d['name']:<16}{d['weight']:>6.2f}  {LEVEL_NAMES[d['level']]:<4}{d['score']:>3}  {d['evidence']}")
     lines.append("-" * 56)
     if result["strengths"]:
-        lines.append("СИЛЬНЫЕ СТОРОНЫ (≥4): " + ", ".join(d["name"] for d in result["strengths"]))
+        lines.append("СИЛЬНОЕ ПОКРЫТИЕ (≥4): " + ", ".join(d["name"] for d in result["strengths"]))
     else:
-        lines.append("СИЛЬНЫЕ СТОРОНЫ (≥4): нет")
+        lines.append("СИЛЬНОЕ ПОКРЫТИЕ (≥4): нет")
     if result["gaps"]:
         lines.append("ПРОБЕЛЫ (<3): " + ", ".join(
             f"{d['name']} ({d['score']})" for d in result["gaps"]))
@@ -146,7 +146,7 @@ def render(result):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Калькулятор оценки соответствия кандидатов")
+    parser = argparse.ArgumentParser(description="Калькулятор покрытия дизайна агента")
     parser.add_argument("input", nargs="?", help="путь к JSON-файлу с оценками (по умолчанию — stdin)")
     parser.add_argument("--json", action="store_true", help="вывод машиночитаемого JSON")
     args = parser.parse_args()

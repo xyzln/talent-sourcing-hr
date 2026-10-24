@@ -1,77 +1,107 @@
-# Sourcing Report Template
+# Agent Design Spec Template
 
-> Used with Step 5 of the `recruit-web-sourcing` skill. Structure every sourcing conclusion this way - conclusion first.
+> Used at Step 5 of the `recruit-web-sourcing` skill. Structure every agent design conclusion this way - conclusion first.
 
 ---
 
-# Talent Sourcing Report: {Role Title}
+# "{Agent Name}" Agent Design Spec
 
-- **Business owner**: {department / owner}
-- **Sourcing scope**: {target city / industry / seniority}
+- **Requester**: {user/team}
+- **Purpose**: {what this agent does}
+- **Landing form**: {expert package / standalone skill / sub-agent}
 - **Data retrieved**: {YYYY-MM-DD}
-- **Sourcing officer**: Talent Sourcing Officer
+- **Designer**: Agent's HR
 
 ## 1. Conclusion First (TL;DR)
 
-Answer the business owner's three questions in 3-5 sentences:
+Answer the user's three biggest questions in 3-5 sentences:
 
-1. **Is talent easy to find?**: supply-density verdict (ample / tight / structurally scarce) + one-line rationale
-2. **Match situation**: top-lead match score range + whether any hard veto was triggered
-3. **Recommended action**: the 1-3 things to do in the next 72 hours
+1. **What this agent is**: one-line positioning + the real-world role it corresponds to
+2. **Design basis**: which job-design elements the research covered, and source quality
+3. **Coverage and landing**: coverage total and grade + recommended landing form and next step
 
-## 2. Talent Profile Recap
+## 2. Job Design Research Summary
 
-| Item | Content |
-|------|---------|
-| Hard requirements | seniority / years / education / industry / location / salary band / start date |
-| Must-haves (hard veto) | ... |
-| Plus items | ... |
-| Target companies/populations | ... |
+| Element | Research finding | Evidence (source + date) |
+|---------|-----------------|--------------------------|
+| Responsibilities | … | … |
+| Requirements | … | … |
+| Workflow | … | … |
+| Collaboration | … | … |
+| KPIs | … | … |
+| Toolstack | … | … |
 
-## 3. Talent Supply Overview
+> Elements not found are honestly marked "not found", with the impact on the design explained.
 
-| Metric | Conclusion | Evidence (source + date) |
-|--------|-----------|--------------------------|
-| Open role volume | ... | ... |
-| Salary band (P25/P50/P75) | ... | ... |
-| Talent clusters | ... | ... |
-| Scarcity signals | ... | ... |
+## 3. Agent Design Spec
 
-## 4. Top Matching Leads Table
+### 3.1 Frontmatter
 
-| # | Lead (anonymized) | Source | Match score | Strengths | Gaps | Evidence strength |
-|---|-------------------|--------|-------------|-----------|------|-------------------|
-| 1 | ... | ... | 87 (A) | ... | ... | Sufficient |
-| 2 | ... | ... | 78 (B) | ... | ... | Partially pending |
+```yaml
+---
+name: {agent-name}
+description: {when to activate this agent - purpose + trigger}
+displayName:
+  zh: {Chinese display name}
+  en: {English display name}
+profession:
+  zh: {profession (zh)}
+  en: {profession}
+---
+```
 
-> Leads are anonymized by default (e.g., "senior backend at a payment company, 6 years"); do targeted outreach only after the business owner confirms intent.
+### 3.2 Persona
 
-## 5. Match Score Detail (Top 1 example)
+{2-4 sentences: who this agent is, what problem it solves, its methodology, how it differs from a generic agent}
 
-| Capability dimension | Weight | Level | Score | Evidence |
-|----------------------|--------|-------|-------|----------|
-| ... | ... | must | ... | ... |
-| **Weighted total** | 1.0 | - | **XX** | Grade: A/B/C/D |
+### 3.3 Core Capabilities
 
-## 6. Outreach Advice
+{3-5 items, each mapping to responsibilities/requirements from the job research, with evidence sources noted}
 
-- **Channels**: where each lead type goes (job-board messaging / referral / community engagement)
-- **Opening message points**: no more than 3, highlighting the business owner's differentiators (business outlook, technical challenge, team setup)
-- **Salary strategy**: positioning relative to market percentiles
+### 3.4 Workflow
 
-## 7. Risks and Fallbacks
+{Step by step, each with explicit actions, inputs, outputs, and checkpoints; mirrors the real job workflow}
+
+### 3.5 Tools and Scripts
+
+{Tools and scripts needed; write "none, pure dialogue flow" if there are none}
+
+### 3.6 Guardrails
+
+{What it won't do, compliance red lines, when it refuses to execute}
+
+### 3.7 Acceptance Criteria
+
+{What "done well" means for this agent - corresponding to the job's KPIs}
+
+## 4. Design Coverage Details
+
+| Design dimension | Weight | Tier | Score | Evidence |
+|------------------|--------|------|-------|----------|
+| … | … | core | … | … |
+| **Weighted total** | 1.0 | — | **XX** | Grade: A/B/C/D |
+
+**Gap items and fix suggestions**: {for every dimension <3, the specific action to add research or design}
+
+## 5. Landing Form
+
+- **Recommended form**: {expert package / standalone skill / sub-agent} + one-line rationale
+- **Activation steps**: {which directory to copy to, how to activate, how to verify}
+
+## 6. Risks and Fallbacks
 
 | Risk | Impact | Response |
 |------|--------|----------|
-| Supply tightens / competitors outbid | ... | Lock in early / raise budget / widen alternative populations |
-| Hard requirements too strict | ... | Tighten veto-item priority, define the "nearest neighbor" population |
+| Insufficient job research evidence | Low design coverage | Widen search channels; prioritize L1/L2 first-party materials |
+| Job elements span multiple roles | Design sprawl | Converge on core responsibilities; split into multiple agents |
+| Wrong landing form | Wrong activation method | Reassess the form by usage frequency and reusability |
 
-## 8. Next Actions (for the business owner)
+## 7. Next Actions (for the user)
 
-1. ...
-2. ...
-3. ...
+1. …
+2. …
+3. …
 
 ---
 
-*This report is based on public-channel information; retrieval dates are listed at the top. Candidate leads are for recruiting evaluation only - please observe personal information protection.*
+*This spec is based on publicly available job-design research; retrieval dates are listed at the top. Agent design is for productivity only - never for cheating, fraud, discrimination, or regulatory evasion.*

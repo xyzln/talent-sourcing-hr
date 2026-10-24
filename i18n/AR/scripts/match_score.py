@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""حاسبة درجة مطابقة المرشحين (واجهة عربية)
+"""حاسبة تغطية تصميم الوكيل (واجهة عربية)
 
-تقيّم فرص المرشحين على أبعاد المهارات (بناءً على الأدلة)؛ وتُخرج درجة المطابقة
-المرجّحة والتصنيف ونقاط القوة والفجوات وأعلام النقض القاطع. تُستخدم في الخطوة 4
+تقيّم أبعاد تصميم الوكيل (بناءً على أدلة بحث الوظيفة)؛ وتُخرج التغطية المرجّحة
+والتصنيف ونقاط التغطية القوة والفجوات وأعلام النقض القاطع. تُستخدم في الخطوة 4
 من مهارة recruit-web-sourcing.
 
 الاستخدام:
@@ -15,11 +15,11 @@
 {
   "dimensions": [
     {
-      "name": "تصميم الأنظمة عالية التزامن",
+      "name": "وضوح الشخصية",
       "weight": 0.3,
       "level": "must | plus | ref",
       "score": 4,
-      "evidence": "قاد تصميم نظام يخدم أكثر من 10 ملايين طلب يوميًا"
+      "evidence": "تعريف الدور واضح: تحليل سلوك المستخدمين وإخراج استنتاجات قابلة للتنفيذ"
     }
   ]
 }
@@ -27,7 +27,7 @@
 القواعد:
     - يجب أن يكون مجموع الأوزان 1.0 (وإلا يتم التطبيع تلقائيًا مع تحذير)
     - الدرجة بين 0-5؛ والبُعد ذو المستوى must الذي يحصل على ≤2 يؤدي إلى نقض قاطع
-    - درجة المطابقة = المتوسط المرجّح (0-5) × 20؛ التصنيف A≥85 وB≥70 وC≥50 وD<50
+    - التغطية = المتوسط المرجّح (0-5) × 20؛ التصنيف A≥85 وB≥70 وC≥50 وD<50
 """
 
 import argparse
@@ -97,13 +97,13 @@ def compute(data, total_weight):
 
     total = round(weighted_sum * 20)
     if vetoed:
-        grade = "D (نقض قاطع)"
+        grade = "D (نقص جوهري)"
     elif total >= 85:
-        grade = "A تواصل فوري"
+        grade = "A جاهز للتطبيق"
     elif total >= 70:
-        grade = "B قابل للتطوير"
+        grade = "B قابل للاستخدام أساسًا"
     elif total >= 50:
-        grade = "C بحذر"
+        grade = "C به نقاط نقص"
     else:
         grade = "D غير مطابق"
 
@@ -123,9 +123,9 @@ def compute(data, total_weight):
 def render(result):
     lines = []
     lines.append("=" * 56)
-    lines.append(f"درجة المطابقة: {result['total']}/100    التصنيف: {result['grade']}")
+    lines.append(f"تغطية التصميم: {result['total']}/100    التصنيف: {result['grade']}")
     if result["vetoed"]:
-        lines.append("! نقض قاطع: بُعد أساسي حصل على ≤2؛ يُصنّف D افتراضيًا ما لم يُعفَ صراحة من صاحب العمل")
+        lines.append("! نقض قاطع: بُعد تصميم أساسي حصل على ≤2؛ يُصنّف D افتراضيًا ما لم يُعفَ صراحة من طالب التصميم")
     if result["weight_normalized"]:
         lines.append("! مجموع الأوزان لا يساوي 1.0؛ تم التطبيع تلقائيًا")
     lines.append("=" * 56)
@@ -134,9 +134,9 @@ def render(result):
         lines.append(f"{d['name']:<16}{d['weight']:>6.2f}  {LEVEL_NAMES[d['level']]:<4}{d['score']:>3}  {d['evidence']}")
     lines.append("-" * 56)
     if result["strengths"]:
-        lines.append("نقاط القوة (≥4): " + ", ".join(d["name"] for d in result["strengths"]))
+        lines.append("نقاط التغطية القوية (≥4): " + ", ".join(d["name"] for d in result["strengths"]))
     else:
-        lines.append("نقاط القوة (≥4): لا شيء")
+        lines.append("نقاط التغطية القوية (≥4): لا شيء")
     if result["gaps"]:
         lines.append("الفجوات (<3): " + ", ".join(
             f"{d['name']} ({d['score']})" for d in result["gaps"]))
@@ -146,7 +146,7 @@ def render(result):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="حاسبة درجة مطابقة المرشحين")
+    parser = argparse.ArgumentParser(description="حاسبة تغطية تصميم الوكيل")
     parser.add_argument("input", nargs="?", help="مسار ملف JSON للتقييمات (افتراضيًا من الإدخال القياسي)")
     parser.add_argument("--json", action="store_true", help="إخراج JSON قابل للقراءة آليًا")
     args = parser.parse_args()

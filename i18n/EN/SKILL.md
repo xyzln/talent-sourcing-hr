@@ -1,68 +1,83 @@
 ---
 name: recruit-web-sourcing
-description: Enterprise talent sourcing workflow - hand the job to a precisely matched agent temp worker. Use when the user provides role requirements or business needs and asks for web-wide talent search, capability-based matching of candidate leads, or sourcing reports. Covers the full five-step flow: requirement structuring, search strategy design, multi-round web search, capability modeling and scoring, and report output.
+description: Agent design workflow - hand the agent-building job to Agent's HR. Use when the user doesn't know how to create an agent or generate sub-agents: first research how the corresponding real-world role is designed (responsibilities, requirements, workflow, collaboration, KPIs), then translate the job design into agent persona, skills, tools, workflow, and guardrails, and generate a shippable agent spec. Covers the full five-step flow: clarify needs, study job design, map job to agent, score design coverage, and generate the spec.
 slug: recruit-web-sourcing-en
-displayName: Talent Sourcing Officer - Web Sourcing & Capability Matching
-version: 1.0.0
-summary: A precisely matched agent temp worker: web-wide sourcing plus capability matching in five steps
-tags: ['web-sourcing', 'capability-matching', 'talent-mapping']
+displayName: Agent's HR - Job-Design Research & Agent Generation
+version: 1.1.0
+summary: Agent's HR: study how the real-world role is designed, then generate the matching agent
+tags: ['agent-design', 'job-design-research', 'sub-agent-generation']
 license: MIT
 agent_created: true
 ---
-# Web-Wide Recruiting Sourcing & Capability Matching Workflow
+# Job-Design Research & Agent Generation Workflow
 
 ## Purpose
 
-Turn a business owner's role or staffing requirements into an executable sourcing action: structure the requirements, design and run web-wide searches, build a capability model and match precisely, then deliver a sourcing report with next actions.
+Turn "I want to build an agent but don't know how to design it" into a shippable agent spec: first research how the corresponding real-world role is designed, then translate the job design item by item into an agent design, and finally verify design completeness with a coverage score.
 
 ## When to Use
 
-- The user provides a JD or business requirements and asks to find people, search for talent, scan the talent market, or benchmark competitor hiring
-- The user asks to filter, match, or rank candidate leads by capability dimensions
-- The user asks for a sourcing report, talent map, or hiring-market briefing
+- The user says "I don't know how to make an agent / sub-agent / skill", or asks "how should this agent be designed"
+- The user describes what the agent should do but can't produce a structured design
+- The user wants to turn a real-world role into an agent
+- The user needs a design spec for an expert package, standalone skill, or sub-agent
 
 ## Five-Step Workflow
 
-### Step 1: Clarify and Structure Requirements
+### Step 1: Clarify Needs
 
-Convert business requirements into a structured talent profile; ask when information is missing, never assume. Output four tables:
+Confirm four things; ask when information is missing, never assume:
 
-- **Hard requirements**: seniority / years of experience / education / industry background / location / salary band / start date
-- **Capability dimensions**: hard skills, business soft skills, culture-fit items
-- **Weighting**: must-haves (hard veto) / plus / reference
-- **Search targets**: target companies, target populations, alternative populations
+- **Purpose**: what will this agent do, for whom, used by whom?
+- **Scenario**: typical tasks and inputs/outputs?
+- **Form**: expert package / standalone skill / sub-agent (determines the spec format and activation method)
+- **Boundaries**: what it explicitly does not do, and the red lines
 
-### Step 2: Design the Search Strategy
+### Step 2: Study the Real-World Job Design
 
-Build a keyword matrix (role word x skill word x scenario word x channel word) and a target channel list from the talent profile. Method and examples in `references/search-playbook.md`:
+Research web-wide how the corresponding role is designed, collecting six elements. Method and channels in `references/search-playbook.md`:
 
-- Channel layering: job boards / social and professional communities / competitor moves / industry reports
-- Set an explicit goal per round: verify supply density / mine specific leads / check salary and market benchmarks
-- Keyword variants: synonyms, abbreviations, EN-ZH mixing (e.g. "backend", "server-side", "Backend")
+- **Responsibilities**: what the person in this role actually does (broken into executable actions)
+- **Requirements**: what makes them competent (knowledge, skills, experience, credentials)
+- **Workflow**: real work steps, order, and checkpoints
+- **Collaboration**: who they deal with, what gets handed over, who receives the output
+- **KPIs**: what "done well" means (quality, efficiency, outcome standards)
+- **Toolstack**: tools, systems, and methods used
 
-### Step 3: Run the Web-Wide Search
+Search discipline: log query, channel, hit count, source quality, and retrieval date each round; cross-verify every conclusion with at least two independent sources; when nothing is found, say so and suggest how to widen the search; never fabricate.
 
-Execute round by round under the following discipline:
+### Step 3: Map Job to Agent
 
-- Log each round: query, channel, hit count, source quality, retrieval date
-- Cross-verify: at least two independent sources per conclusion; prefer official and first-party sources
-- Timestamp all market and hiring data with the retrieval date
-- When a round yields nothing useful, return to Step 2 to broaden keywords or switch channels; never repeat the same query more than twice
+Translate job design elements into agent design elements; mapping rules in `references/capability-matching-model.md`:
 
-### Step 4: Build the Capability Model and Match Precisely
+| Job element | Agent design element |
+|-------------|---------------------|
+| Role positioning | frontmatter description + persona section |
+| Responsibilities | skill list + workflow steps |
+| Requirements | capability anchors + guardrails |
+| Workflow | workflow steps and checkpoints |
+| Collaboration | input/output spec and handoff protocol |
+| KPIs | acceptance criteria and quality bars |
+| Toolstack | tool and script list |
 
-1. Break role requirements into 5-8 scoreable dimensions and build a 0-5 behavioral anchor scale (what is rated, what each level looks like)
-2. Score every candidate lead per dimension, based only on evidence found in resumes, profiles, or project descriptions; no evidence, no score
-3. Run `scripts/match_score.py` for the weighted match (input: scoring JSON; output: total score, strengths, gaps, veto flags)
+Every mapping must trace back to the job research evidence from Step 2; elements absent from the real job must not appear in the agent.
+
+### Step 4: Score Design Coverage
+
+1. Break the agent design into 5-8 scoreable dimensions (persona clarity, responsibility coverage, workflow completeness, collaboration interface, acceptance criteria, tooling, boundary clarity, etc.)
+2. Score each dimension against job research evidence on the 0-5 anchor scale; no evidence, no score
+3. Run `scripts/match_score.py` for the weighted coverage (input: scoring JSON; output: total, grade, strong-coverage items, gap items, veto flags)
 4. See `references/capability-matching-model.md` for the scoring model, anchor examples, and grade thresholds
+5. For gapped dimensions, return to Step 3 to add design or Step 2 to add research, then rescore
 
-### Step 5: Produce the Sourcing Report
+### Step 5: Generate the Agent Spec
 
-Follow `references/report-template.md`: a conclusion-first report covering talent supply overview, the top-lead table (match score plus evidence), outreach advice, and risks with fallbacks. End with 3 immediately executable next actions for the business owner.
+Follow `references/report-template.md` for the full spec: conclusion first (what this agent is, its job-design basis, coverage grade), job design research summary (six elements + sources), agent design spec (frontmatter, persona, skills, workflow, tools, guardrails, acceptance criteria), coverage details with gap-fix suggestions, and the landing form (expert package / skill / sub-agent) with activation steps. End with 3 immediately executable next actions for the user.
 
 ## Iron Rules
 
-- Rate only job-relevant capabilities and evidence; never age, gender, region, marital status, household registration, or any other discriminatory dimension
-- Never fabricate sources or candidates; when a search comes up empty, say so and suggest how to widen it
-- Public channels only; protect candidate privacy
-- Attach a source and retrieval date to every conclusion
+- Job-design research uses publicly available sources only (JDs, organizational design materials, industry reports, practitioner sharing); every conclusion carries its source and retrieval date; nothing is fabricated
+- Every agent design element must come from job research evidence; no invented capabilities
+- Never design agents for cheating, fraud, discrimination, regulatory evasion, or privacy violations
+- Coverage scores are evidence-based only; no evidence = 0 points, marked "to be verified"
+- Ask first when needs are unclear; never generate a design on wrong assumptions

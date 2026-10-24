@@ -1,7 +1,7 @@
 {
   "name": "talent-sourcing-hr",
-  "version": "1.0.0",
-  "description": "Stop guessing with generic agents: an enterprise talent sourcing expert matched precisely to your real recruiting requirements, with web-wide search and capability-based matching",
+  "version": "1.1.0",
+  "description": "Agent's HR - agent designer for users who don't know how to create an agent or generate sub-agents: researches how real-world positions are designed (responsibilities, requirements, workflows, collaboration, KPIs), then translates the job design into a complete, ready-to-use agent spec - persona, skills, tools, workflow, and guardrails",
   "author": {
     "name": "WorkBuddy",
     "email": "support@workbuddy.local"
@@ -13,32 +13,32 @@
   "agentName": "talent-sourcing-hr",
 
   "displayName": {
-    "en": "Talent Sourcing Officer",
-    "zh": "招聘寻访官"
+    "en": "Agent's HR",
+    "zh": "Agent's HR"
   },
   "profession": {
-    "en": "Talent Sourcing & Capability Matching Advisor",
-    "zh": "招聘寻访与人才匹配顾问"
+    "en": "Job-Design Research & Agent Design Advisor",
+    "zh": "岗位设计研究与智能体设计顾问"
   },
   "displayDescription": {
-    "en": "Stop using agents by luck. Match your agent temp worker precisely against real recruiting experience and business requirements.",
-    "zh": "不会搭临时 agent？还在让agent碰运气？凭真实招聘经验与需求，精准匹配 agent 临时工"
+    "en": "Don't know how to create an agent? Study how the real-world role is designed, then translate the job design into agent persona and skills.",
+    "zh": "不会创建智能体？先研究现实岗位怎么设计的，再把岗位设计翻译成 agent 人格与技能，生成对应智能体"
   },
   "avatar": "avatars/expert.png",
   "categoryId": "09-OperationsHR",
   "defaultInitPrompt": {
-    "zh": "不知道怎么设置临时 agent？发我业务要求和岗位需求，基于真实招聘经验全网检索并精准匹配人才。",
-    "en": "Not sure how to set up a temporary agent? Send me your business and role requirements for web-wide sourcing and precise capability matching."
+    "zh": "不知道怎么创建智能体或子 agent？告诉我你想让 agent 干什么，我先研究现实中这个岗位是怎么设计的，再直接生成对应的 agent。",
+    "en": "Don't know how to create an agent or spawn sub-agents? Tell me what the agent should do; I'll research how the real-world role is designed and generate the agent."
   },
   "plugin": "talent-sourcing-hr",
   "tags": [
-    { "en": "Web Sourcing", "zh": "全网寻访" },
-    { "en": "Capability Matching", "zh": "能力匹配" },
-    { "en": "Talent Mapping", "zh": "人才地图" }
+    { "en": "Agent Design", "zh": "智能体设计" },
+    { "en": "Job Design Research", "zh": "岗位设计研究" },
+    { "en": "Sub-agent Generation", "zh": "子智能体生成" }
   ],
   "quickPrompts": [
-    { "en": "Not sure how to set up a temporary agent? Send me your business and role requirements for web-wide sourcing and precise capability matching.", "zh": "不知道怎么设置临时 agent？发我业务要求和岗位需求，基于真实招聘经验全网检索并精准匹配人才。" },
-    { "en": "Break down the capability model for this role, with screening criteria and a matching scorecard.", "zh": "拆解这个岗位的能力模型，给出筛选标准和匹配评分表。" },
-    { "en": "Summarize recent hiring demand trends in the target industry and output a talent market briefing.", "zh": "汇总近期目标行业的招聘需求动态，输出人才市场洞察简报。" }
+    { "en": "Don't know how to create an agent or spawn sub-agents? Tell me what the agent should do; I'll research how the real-world role is designed and generate the agent.", "zh": "不知道怎么创建智能体或子 agent？告诉我你想让 agent 干什么，我先研究现实中这个岗位是怎么设计的，再直接生成对应的 agent。" },
+    { "en": "Research how this role is designed in the real world: responsibilities, requirements, workflow, collaboration, and KPIs.", "zh": "研究一下这个岗位在现实中是怎么设计的：职责、任职要求、工作流、协作界面和考核指标。" },
+    { "en": "Translate this job design into an agent spec: persona, skills, tools, workflow, and guardrails.", "zh": "把这个岗位的设计翻译成 agent 规格：人格、技能、工具、工作流和边界铁律。" }
   ]
 }

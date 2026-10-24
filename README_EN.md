@@ -1,14 +1,14 @@
 <div align="center">
 
-<img src="assets/hero-agent-temp-worker.jpg" width="760" alt="Talent Sourcing Officer"/>
+<img src="assets/hero-agent-temp-worker.jpg" width="760" alt="Agent's HR"/>
 
-# Talent Sourcing Officer
+# Agent's HR · Agent Architect
 
-### Don't know how to set up a temporary agent? Still letting agents guess?
-**A precisely matched agent temp worker, built on real recruiting experience and business requirements.**
+### Don't know how to create an agent? Can't spawn sub-agents?
+**Study how the real-world role is designed, translate the job design into agent persona and skills, and generate the matching agent.**
 
 <p>
-  <img src="https://img.shields.io/badge/version-1.0.0-0d9488?style=flat-square" alt="version"/>
+  <img src="https://img.shields.io/badge/version-1.1.0-0d9488?style=flat-square" alt="version"/>
   <img src="https://img.shields.io/badge/license-MIT-2563eb?style=flat-square" alt="license MIT"/>
   <img src="https://img.shields.io/badge/languages-5-7c3aed?style=flat-square" alt="5 languages"/>
   <img src="https://img.shields.io/badge/platform-WorkBuddy%20Expert-0f766e?style=flat-square" alt="platform"/>
@@ -21,73 +21,73 @@
 
 ## 📖 Table of Contents
 
-- [💡 Why This Exists](#-why-this-exists)
-- [✨ Core Capabilities](#-core-capabilities)
-- [🔄 Five-Step Workflow](#-five-step-workflow)
-- [📊 Match Scoring](#-match-scoring)
-- [🚀 Quick Start](#-quick-start)
-- [💬 Example Prompts](#-example-prompts)
-- [🌐 Language Versions](#-language-versions)
-- [⚠️ Compliance Commitment](#️-compliance-commitment)
-- [📁 Repository Structure](#-repository-structure)
-- [📄 License](#-license)
+- [Why you need it](#why-you-need-it)
+- [Core capabilities](#core-capabilities)
+- [Five-step workflow](#five-step-workflow)
+- [Coverage scoring](#coverage-scoring)
+- [Quick start](#quick-start)
+- [Usage examples](#usage-examples)
+- [Language versions](#language-versions)
+- [Compliance](#compliance)
+- [Repository structure](#repository-structure)
+- [License](#license)
 
 ---
 
-## 💡 Why This Exists
+## Why you need it
 
-Generic agents answer everything a little; talent sourcing demands precision: requirements must be decomposed, channels must be covered, capabilities must be scored, and conclusions must be traceable. This agent temp worker ships with the full methodology pre-built — you bring the business requirements, it brings the sourcing report.
+Want to build an agent (or a sub-agent, or a skill) but have no idea how to design it - so you let a generic agent guess? Agent's HR runs on a single principle: **never design an agent from scratch - first study how the people who do this job in the real world are designed**. Responsibilities, requirements, workflows, collaboration interfaces, and KPIs all get researched, then the job design is translated item by item into an agent design, producing a spec you can actually ship.
 
-| Pain point | Generic agent | Talent Sourcing Officer |
+| Pain point | What a generic agent does | What Agent's HR does |
 |:---|:---|:---|
-| Don't know how to set up a temporary agent | Prompt by feel, hope for luck | Methodology pre-built: 5-step workflow + 3 reference manuals |
-| Fuzzy requirements | Search first, ask never | Structures a talent profile first; asks when info is missing |
-| No search discipline | One or two keywords, crossed fingers | Keyword matrix × channel layering, multi-round cross-verified search |
-| Matching by gut feel | "Looks like a good fit" | 0-5 behavioral anchors + weighted scoring + hard vetoes |
-| Untraceable conclusions | Sounds convincing, no sources | Every claim tied to evidence; market data timestamped |
+| Don't know how to create an agent / sub-agent | Writes prompts by feel, hopes for the best | Studies how the real-world role is designed, then generates the agent |
+| Design without evidence | Invents persona and skills out of thin air | Every design decision traces back to job-design research (source + date) |
+| Misses job elements | Writes whatever comes to mind | Six-element checklist: responsibilities / requirements / workflow / collaboration / KPIs / toolstack |
+| No quality gate | "Looks usable" | 0-5 coverage anchors + weighted scoring + hard veto |
+| Never ships | Advice only, no spec | Full agent spec + landing form and activation steps |
 
 ---
 
-## ✨ Core Capabilities
+## Core capabilities
 
 | # | Capability | Description |
 |:--|:---|:---|
-| 1 | **Requirement Structuring** | Turns colloquial asks ("we need a backend who can handle pressure") into a structured talent profile: hard requirements, capability dimensions, weights, veto items |
-| 2 | **Web-Wide Sourcing** | Keyword matrix + channel layering (job boards / social & pro communities / competitor moves / industry reports), multi-round search, cross-verified supply density and salary benchmarks |
-| 3 | **Capability Modeling & Matching** | 5-8 scoreable dimensions, 0-5 behavioral anchor scale, `match_score.py` weighted computation → match grade, strengths, gaps |
-| 4 | **Sourcing Report** | Conclusion-first: supply overview, top candidate-lead table, outreach advice, risk fallbacks, 72-hour action list |
+| 1 | **Real-world job design research** | Web-wide research on how the role is designed: responsibilities from real JDs, requirements, daily workflow, collaboration interfaces, KPIs, toolstack; cross-validated across sources, honestly reports when nothing is found |
+| 2 | **Job → agent mapping** | Translates six job elements into agent design elements: role positioning → persona, responsibilities → skills & workflow, requirements → capability anchors & guardrails, collaboration → I/O spec, KPIs → acceptance criteria, toolstack → tool list |
+| 3 | **Coverage scoring** | 5-8 design dimensions scored on 0-5 anchors, weighted via `match_score.py`; outputs coverage grade, strong-coverage items, gap items, and veto flags |
+| 4 | **Agent spec generation** | Conclusion-first full spec (frontmatter, persona, skills, workflow, tools, guardrails, acceptance criteria) plus the landing form (expert package / standalone skill / sub-agent) and activation steps |
 
 ---
 
-## 🔄 Five-Step Workflow
+## Five-step workflow
 
 <img src="assets/workflow_EN.svg" width="100%" alt="Five-step workflow"/>
 
 | Step | Input | Output |
 |:--|:---|:---|
-| 1. Structure | Business requirements / JD | Talent profile (hard reqs + dimensions + weights) |
-| 2. Strategy | Talent profile | Keyword matrix + channel list + search rounds |
-| 3. Search | Search strategy | Hit log (source + date + quality rating) |
-| 4. Match | Candidate leads + capability model | Match score + strengths + gaps |
-| 5. Report | All results | Conclusion-first sourcing report + 72-hour action list |
+| 1. Clarify needs | The user's agent idea | Four questions: purpose / scenario / landing form / boundaries |
+| 2. Study job design | Needs | Six-element research summary + sources and dates |
+| 3. Map to agent | Job design summary | Design draft (persona / skills / workflow / tools / boundaries) |
+| 4. Score coverage | Design draft + job evidence | Coverage total + grade + gap items and fix suggestions |
+| 5. Generate spec | All results | Full agent spec + landing form and activation steps |
 
 ---
 
-## 📊 Match Scoring
+## Coverage scoring
 
-Scores are based on public-channel evidence only — no evidence, no score. Weighted average × 20 = match score (0-100):
+Scores are based on job-design research evidence only; no evidence, no score. Weighted average × 20 = coverage percentage:
 
-| Score | Grade | Recommended action |
+| Coverage | Grade | Action |
 |:--|:---|:---|
-| ≥ 85 | **A · Priority outreach** | Reach out immediately with tailored messaging |
-| 70 – 84 | **B · Developable** | Reach out while sizing the cost of closing gaps |
-| 50 – 69 | **C · Caution** | Fallback option when supply is tight |
-| < 50 | **D · No match** | Keep off the sourcing list |
-| Any must-have ≤ 2 | **Hard veto** | Defaults to D unless the business owner explicitly waives |
+| ≥ 85 | **A · Ship it** | Build directly as expert package / skill / sub-agent per the spec |
+| 70 – 84 | **B · Basically usable** | Ship while closing gap items (more research or more design) |
+| 50 – 69 | **C · Has gaps** | Finish research or design first, then ship |
+| < 50 | **D · Mismatch** | Go back to step 2 and re-research the role |
+| Core item ≤ 2 | **Hard veto** | Default D regardless of total, unless the requester explicitly waives |
 
 ---
 
-## 🚀 Quick Start
+## Quick start
 
 ### Option 1: Install as an expert package (recommended)
 
@@ -97,14 +97,14 @@ Install this repository as a WorkBuddy expert package:
 # Clone the repo
 git clone https://github.com/xyzln/talent-sourcing-hr.git
 
-# Copy into the experts directory
+# Copy to the experts directory
 cp -r talent-sourcing-hr ~/.workbuddy/plugins/marketplaces/my-experts/plugins/
 
 # Register (script lives in the expert-manager skill's scripts/ directory)
 python3 register_expert.py ~/.workbuddy/plugins/marketplaces/my-experts/plugins/talent-sourcing-hr
 ```
 
-Then pick **Talent Sourcing Officer** in the WorkBuddy expert center and state your business requirements — that's it.
+Then pick **Agent's HR** in the WorkBuddy expert center and describe the agent you want to build.
 
 ### Option 2: Use the skill standalone
 
@@ -112,17 +112,17 @@ The `skills/recruit-web-sourcing/` directory can be copied to `~/.workbuddy/skil
 
 ---
 
-## 💬 Example Prompts
+## Usage examples
 
-> I'm the business owner. Here are our role requirements and business needs — search the web, match talent precisely, and give me sourcing conclusions.
+> Don't know how to create an agent or spawn sub-agents? I want this agent to "analyze user behavior and output actionable conclusions" - research how the real-world role is designed and generate the agent directly.
 
-> Break down the capability model for this role, with screening criteria and a matching scorecard.
+> Research how a "data analyst" is designed in the real world: responsibilities, requirements, workflow, collaboration interfaces, and KPIs.
 
-> Summarize recent hiring demand trends in the target industry and output a talent market briefing.
+> Translate this job design into an agent spec: persona, skills, tools, workflow, and guardrails.
 
 ---
 
-## 🌐 Language Versions
+## Language versions
 
 | Language | README | SkillHub skill |
 |:---|:---|:---|
@@ -132,48 +132,48 @@ The `skills/recruit-web-sourcing/` directory can be copied to `~/.workbuddy/skil
 | 🇷🇺 Русский | [README_RU.md](README_RU.md) | `recruit-web-sourcing-ru` |
 | 🇸🇦 العربية | [README_AR.md](README_AR.md) | `recruit-web-sourcing-ar` |
 
-Every language version fully translates the SKILL.md, all three reference manuals, and the scoring script's output strings.
+Each language version fully translates SKILL.md, the three reference manuals, and the scoring script's output text.
 
 ---
 
-## ⚠️ Compliance Commitment
+## Compliance
 
-- Screening and matching rely **only on job-relevant capabilities and public-channel evidence** — no age, gender, region, marital, or household-registration dimensions
-- **No fabricated sources or candidates** — if a search comes up empty, we say so and suggest how to widen it
-- Public information only; candidate privacy is protected
-- Every conclusion carries its source and retrieval date
+- Job-design research uses **publicly available sources only**; every conclusion carries its source and retrieval date - nothing is fabricated
+- **No agents designed for cheating, fraud, discrimination, regulatory evasion, or privacy violations**
+- Every agent design element must trace back to job-design research; no invented capabilities
+- Coverage scores are evidence-based only; no evidence = 0 points, marked "to be verified"
 
 ---
 
-## 📁 Repository Structure
+## Repository structure
 
 ```text
 talent-sourcing-hr/
 ├── README.md                        # Entry point (language switcher)
-├── README_CN.md / _TW / _EN / _RU / _AR   # Five-language landing pages
+├── README_CN.md / _TW / _EN / _RU / _AR   # Five language landing pages
 ├── assets/                          # Illustrations
-│   ├── hero-agent-temp-worker.jpg   # Character hero art
-│   ├── talent-sourcing-network.jpg  # Web-sourcing concept art
+│   ├── hero-agent-temp-worker.jpg   # Persona hero art
+│   ├── talent-sourcing-network.jpg  # Job-design research concept art
 │   └── workflow_{CN,TW,EN,RU,AR}.svg      # Five-step workflow diagram (5 languages)
 ├── .codebuddy-plugin/plugin.json    # Expert package manifest
-├── agents/talent-sourcing-hr.md     # Expert persona (Gu Xun, sourcing officer)
+├── agents/talent-sourcing-hr.md     # Expert persona (Agent's HR · Gu Xun)
 ├── avatars/expert.png               # Expert avatar
 ├── skills/recruit-web-sourcing/     # Skill source (Simplified Chinese)
 │   ├── SKILL.md
-│   ├── references/                  # Search playbook / matching model / report template
-│   └── scripts/match_score.py       # Match score calculator
-├── i18n/{CN,TW,EN,RU,AR}/           # Full five-language skill versions
+│   ├── references/                  # Job-design research playbook / mapping model / spec template
+│   └── scripts/match_score.py       # Coverage calculator
+├── i18n/{CN,TW,EN,RU,AR}/           # Full skill versions in five languages
 └── LICENSE
 ```
 
 ---
 
-## 📄 License
+## License
 
 [MIT](LICENSE) © 2026 talent-sourcing-hr contributors
 
 <div align="center">
 
-**⭐ Star this repo if it helps — let more people burned by agent guesswork find their temp worker**
+**⭐ Star this repo so more people who don't know how to build agents can find Agent's HR**
 
 </div>

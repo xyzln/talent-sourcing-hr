@@ -1,38 +1,38 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1244 330" width="1244" height="330" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'PingFang SC', 'Noto Sans Arabic', 'Microsoft YaHei', sans-serif">
 <rect x="0" y="0" width="1244" height="330" rx="18" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-<text x="622.0" y="38" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">سير العمل من خمس خطوات · من المتطلبات إلى تقرير الاستقطاب</text>
+<text x="622.0" y="38" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">سير العمل من خمس خطوات · من دراسة الوظيفة إلى مواصفة الوكيل</text>
 <rect x="10" y="64" width="216" height="190" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
 <circle cx="118.0" cy="100" r="19" fill="#0d9488"/>
 <text x="118.0" y="107" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">1</text>
-<text x="118.0" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">التقرير</text>
-<text x="118.0" y="184" text-anchor="middle" font-size="13.5" fill="#475569">الاستنتاجات أولًا</text>
-<text x="118.0" y="206" text-anchor="middle" font-size="13.5" fill="#475569">وخطة عمل 72 ساعة</text>
+<text x="118.0" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">توليد المواصفة</text>
+<text x="118.0" y="184" text-anchor="middle" font-size="13.5" fill="#475569">مواصفة وكيل كاملة</text>
+<text x="118.0" y="206" text-anchor="middle" font-size="13.5" fill="#475569">+ خطوات التفعيل</text>
 <path d="M 256 150.0 L 238 159.0 L 256 168.0" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="262" y="64" width="216" height="190" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
 <circle cx="370.0" cy="100" r="19" fill="#0d9488"/>
 <text x="370.0" y="107" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">2</text>
-<text x="370.0" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">المطابقة</text>
-<text x="370.0" y="184" text-anchor="middle" font-size="13.5" fill="#475569">تقييم مرجّح</text>
-<text x="370.0" y="206" text-anchor="middle" font-size="13.5" fill="#475569">على مقياس 0-5</text>
+<text x="370.0" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">تقييم التغطية</text>
+<text x="370.0" y="184" text-anchor="middle" font-size="13.5" fill="#475569">مراسي 0-5 مرجّحة</text>
+<text x="370.0" y="206" text-anchor="middle" font-size="13.5" fill="#475569">وإيجاد نقاط النقص</text>
 <path d="M 508 150.0 L 490 159.0 L 508 168.0" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="514" y="64" width="216" height="190" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
 <circle cx="622.0" cy="100" r="19" fill="#0d9488"/>
 <text x="622.0" y="107" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">3</text>
-<text x="622.0" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">البحث</text>
-<text x="622.0" y="184" text-anchor="middle" font-size="13.5" fill="#475569">بحث متعدد الأدوار</text>
-<text x="622.0" y="206" text-anchor="middle" font-size="13.5" fill="#475569">مع تحقق متقاطع</text>
+<text x="622.0" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">الوظيفة → الوكيل</text>
+<text x="622.0" y="184" text-anchor="middle" font-size="13.5" fill="#475569">ترجمة العناصر إلى</text>
+<text x="622.0" y="206" text-anchor="middle" font-size="13.5" fill="#475569">شخصية ومهارات</text>
 <path d="M 760 150.0 L 742 159.0 L 760 168.0" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="766" y="64" width="216" height="190" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
 <circle cx="874.0" cy="100" r="19" fill="#0d9488"/>
 <text x="874.0" y="107" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">4</text>
-<text x="874.0" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">الاستراتيجية</text>
-<text x="874.0" y="184" text-anchor="middle" font-size="13.5" fill="#475569">مصفوفة الكلمات</text>
-<text x="874.0" y="206" text-anchor="middle" font-size="13.5" fill="#475569">وتوزيع القنوات</text>
+<text x="874.0" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">دراسة الوظيفة</text>
+<text x="874.0" y="184" text-anchor="middle" font-size="13.5" fill="#475569">المسؤوليات والمتطلبات</text>
+<text x="874.0" y="206" text-anchor="middle" font-size="13.5" fill="#475569">والمؤشرات والأدوات</text>
 <path d="M 1012 150.0 L 994 159.0 L 1012 168.0" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="1018" y="64" width="216" height="190" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
 <circle cx="1126.0" cy="100" r="19" fill="#0d9488"/>
 <text x="1126.0" y="107" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">5</text>
-<text x="1126.0" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">الهيكلة</text>
-<text x="1126.0" y="184" text-anchor="middle" font-size="13.5" fill="#475569">تحويل متطلبات العمل</text>
-<text x="1126.0" y="206" text-anchor="middle" font-size="13.5" fill="#475569">إلى ملف مواهب</text>
+<text x="1126.0" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">توضيح المتطلبات</text>
+<text x="1126.0" y="184" text-anchor="middle" font-size="13.5" fill="#475569">ماذا يفعل الوكيل؟</text>
+<text x="1126.0" y="206" text-anchor="middle" font-size="13.5" fill="#475569">شكل التطبيق والحدود</text>
 </svg>

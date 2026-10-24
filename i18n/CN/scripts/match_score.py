@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""match_score.py — 人才匹配度计算器
+"""match_score.py — Agent 设计覆盖度计算器
 
-输入候选线索在各能力维度上的评分（基于证据），输出加权匹配度、分级、
-优势项、缺口项与一票否决标记。配合 recruit-web-sourcing 技能第 4 步使用。
+输入 agent 设计各维度的评分（基于岗位研究证据），输出加权覆盖度、分级、
+强覆盖项、缺口项与一票否决标记。配合 recruit-web-sourcing 技能第 4 步使用。
 
 用法:
     python match_score.py scores.json          # 从文件读取
@@ -14,11 +14,11 @@
 {
   "dimensions": [
     {
-      "name": "高并发系统设计",
+      "name": "人格定位清晰",
       "weight": 0.3,
       "level": "must | plus | ref",
       "score": 4,
-      "evidence": "主导过日均千万级请求系统架构"
+      "evidence": "岗位角色定义明确：负责用户行为分析并输出可执行结论"
     }
   ]
 }
@@ -26,7 +26,7 @@
 规则:
     - weight 之和应为 1.0（不为 1.0 时自动归一化并提示）
     - score 取值 0-5；level 为 must 的维度得分 <=2 触发一票否决
-    - 匹配度 = 加权平均分(0-5) x 20；分级 A>=85, B>=70, C>=50, D<50
+    - 覆盖度 = 加权平均分(0-5) x 20；分级 A>=85, B>=70, C>=50, D<50
 """
 
 import argparse
@@ -34,7 +34,7 @@ import json
 import sys
 
 VALID_LEVELS = ("must", "plus", "ref")
-LEVEL_NAMES = {"must": "必备", "plus": "加分", "ref": "参考"}
+LEVEL_NAMES = {"must": "核心", "plus": "加分", "ref": "参考"}
 
 
 def load_input(path):
@@ -96,13 +96,13 @@ def compute(data, total_weight):
 
     total = round(weighted_sum * 20)
     if vetoed:
-        grade = "D（一票否决）"
+        grade = "D（核心项缺失）"
     elif total >= 85:
-        grade = "A 优先寻访"
+        grade = "A 可直接落地"
     elif total >= 70:
-        grade = "B 可培养"
+        grade = "B 基本可用"
     elif total >= 50:
-        grade = "C 谨慎"
+        grade = "C 有缺口"
     else:
         grade = "D 不匹配"
 
@@ -122,20 +122,20 @@ def compute(data, total_weight):
 def render(result):
     lines = []
     lines.append("=" * 56)
-    lines.append(f"匹配度总分: {result['total']}/100    分级: {result['grade']}")
+    lines.append(f"覆盖度总分: {result['total']}/100    分级: {result['grade']}")
     if result["vetoed"]:
-        lines.append("⚠ 触发一票否决：存在必备项得分 ≤2，默认 D 级，除非业务方明确豁免")
+        lines.append("⚠ 触发一票否决：存在核心设计项得分 ≤2，默认 D 级，除非需求方明确豁免")
     if result["weight_normalized"]:
         lines.append("⚠ 权重之和不为 1.0，已自动归一化")
     lines.append("=" * 56)
-    lines.append(f"{'能力维度':<16}{'权重':>6}  {'级':<4}{'分':>3}  证据")
+    lines.append(f"{'设计维度':<16}{'权重':>6}  {'级':<4}{'分':>3}  证据")
     for d in result["details"]:
         lines.append(f"{d['name']:<16}{d['weight']:>6.2f}  {LEVEL_NAMES[d['level']]:<4}{d['score']:>3}  {d['evidence']}")
     lines.append("-" * 56)
     if result["strengths"]:
-        lines.append("优势项(≥4分): " + "、".join(d["name"] for d in result["strengths"]))
+        lines.append("强覆盖项(≥4分): " + "、".join(d["name"] for d in result["strengths"]))
     else:
-        lines.append("优势项(≥4分): 无")
+        lines.append("强覆盖项(≥4分): 无")
     if result["gaps"]:
         lines.append("缺口项(<3分): " + "、".join(
             f"{d['name']}({d['score']}分)" for d in result["gaps"]))
@@ -145,7 +145,7 @@ def render(result):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="人才匹配度计算器")
+    parser = argparse.ArgumentParser(description="Agent 设计覆盖度计算器")
     parser.add_argument("input", nargs="?", help="评分 JSON 文件路径（缺省从标准输入读取）")
     parser.add_argument("--json", action="store_true", help="输出机器可读 JSON")
     args = parser.parse_args()

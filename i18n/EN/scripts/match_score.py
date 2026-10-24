@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Candidate match score calculator (English UI)
+"""Agent design coverage calculator (English UI)
 
-Score candidate leads on capability dimensions (evidence-based); outputs the
-weighted match score, grade, strengths, gaps, and hard-veto flags. Used at
-Step 4 of the recruit-web-sourcing skill.
+Score agent design dimensions (based on job-design research evidence); outputs
+the weighted coverage, grade, strong-coverage items, gaps, and hard-veto flags.
+Used at Step 4 of the recruit-web-sourcing skill.
 
 Usage:
     python match_score.py scores.json          # read from file
@@ -15,11 +15,11 @@ Input format:
 {
   "dimensions": [
     {
-      "name": "High-concurrency system design",
+      "name": "Persona clarity",
       "weight": 0.3,
       "level": "must | plus | ref",
       "score": 4,
-      "evidence": "Led architecture for a system serving 10M+ requests/day"
+      "evidence": "Role definition is clear: owns user-behavior analysis and outputs actionable conclusions"
     }
   ]
 }
@@ -27,7 +27,7 @@ Input format:
 Rules:
     - weights should sum to 1.0 (auto-normalized with a warning otherwise)
     - score is 0-5; a must-level dimension scoring <=2 triggers a hard veto
-    - match score = weighted average (0-5) x 20; grades A>=85, B>=70, C>=50, D<50
+    - coverage = weighted average (0-5) x 20; grades A>=85, B>=70, C>=50, D<50
 """
 
 import argparse
@@ -35,7 +35,7 @@ import json
 import sys
 
 VALID_LEVELS = ("must", "plus", "ref")
-LEVEL_NAMES = {"must": "must", "plus": "plus", "ref": "ref"}
+LEVEL_NAMES = {"must": "core", "plus": "plus", "ref": "ref"}
 
 
 def load_input(path):
@@ -97,15 +97,15 @@ def compute(data, total_weight):
 
     total = round(weighted_sum * 20)
     if vetoed:
-        grade = "D (HARD VETO)"
+        grade = "D (CORE GAP)"
     elif total >= 85:
-        grade = "A Priority outreach"
+        grade = "A Ship it"
     elif total >= 70:
-        grade = "B Developable"
+        grade = "B Basically usable"
     elif total >= 50:
-        grade = "C Caution"
+        grade = "C Has gaps"
     else:
-        grade = "D No match"
+        grade = "D Mismatch"
 
     strengths = [d for d in details if d["score"] >= 4]
     gaps = [d for d in details if d["score"] < 3]
@@ -123,9 +123,9 @@ def compute(data, total_weight):
 def render(result):
     lines = []
     lines.append("=" * 56)
-    lines.append(f"MATCH SCORE: {result['total']}/100    GRADE: {result['grade']}")
+    lines.append(f"COVERAGE: {result['total']}/100    GRADE: {result['grade']}")
     if result["vetoed"]:
-        lines.append("! HARD VETO: a must-have dimension scored <=2; defaults to grade D unless the business owner explicitly waives")
+        lines.append("! HARD VETO: a core design dimension scored <=2; defaults to grade D unless the requester explicitly waives")
     if result["weight_normalized"]:
         lines.append("! Weights do not sum to 1.0; auto-normalized")
     lines.append("=" * 56)
@@ -134,9 +134,9 @@ def render(result):
         lines.append(f"{d['name']:<16}{d['weight']:>6.2f}  {LEVEL_NAMES[d['level']]:<4}{d['score']:>3}  {d['evidence']}")
     lines.append("-" * 56)
     if result["strengths"]:
-        lines.append("STRENGTHS (>=4): " + ", ".join(d["name"] for d in result["strengths"]))
+        lines.append("STRONG COVERAGE (>=4): " + ", ".join(d["name"] for d in result["strengths"]))
     else:
-        lines.append("STRENGTHS (>=4): none")
+        lines.append("STRONG COVERAGE (>=4): none")
     if result["gaps"]:
         lines.append("GAPS (<3): " + ", ".join(
             f"{d['name']} ({d['score']})" for d in result["gaps"]))
@@ -146,7 +146,7 @@ def render(result):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Candidate match score calculator")
+    parser = argparse.ArgumentParser(description="Agent design coverage calculator")
     parser.add_argument("input", nargs="?", help="path to the scoring JSON file (defaults to stdin)")
     parser.add_argument("--json", action="store_true", help="output machine-readable JSON")
     args = parser.parse_args()

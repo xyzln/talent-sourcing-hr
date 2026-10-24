@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""人才匹配度計算機（繁體中文版）
+"""Agent 設計覆蓋度計算機（繁體中文版）
 
-輸入候選線索在各能力維度上的評分（基於證據），輸出加權匹配度、分級、
-優勢項、缺口項與一票否決標記。配合 recruit-web-sourcing 技能第 4 步使用。
+輸入 agent 設計各維度的評分（基於崗位研究證據），輸出加權覆蓋度、分級、
+強覆蓋項、缺口項與一票否決標記。配合 recruit-web-sourcing 技能第 4 步使用。
 
 用法:
     python match_score.py scores.json          # 從檔案讀取
@@ -14,11 +14,11 @@
 {
   "dimensions": [
     {
-      "name": "高併發系統設計",
+      "name": "人格定位清晰",
       "weight": 0.3,
       "level": "must | plus | ref",
       "score": 4,
-      "evidence": "主導過日均千萬級請求系統架構"
+      "evidence": "崗位角色定義明確：負責用戶行為分析並輸出可執行結論"
     }
   ]
 }
@@ -26,7 +26,7 @@
 規則:
     - weight 之和應為 1.0（不為 1.0 時自動正規化並提示）
     - score 取值 0-5；level 為 must 的維度得分 <=2 觸發一票否決
-    - 匹配度 = 加權平均分(0-5) x 20；分級 A>=85, B>=70, C>=50, D<50
+    - 覆蓋度 = 加權平均分(0-5) x 20；分級 A>=85, B>=70, C>=50, D<50
 """
 
 import argparse
@@ -34,7 +34,7 @@ import json
 import sys
 
 VALID_LEVELS = ("must", "plus", "ref")
-LEVEL_NAMES = {"must": "必備", "plus": "加分", "ref": "參考"}
+LEVEL_NAMES = {"must": "核心", "plus": "加分", "ref": "參考"}
 
 
 def load_input(path):
@@ -96,13 +96,13 @@ def compute(data, total_weight):
 
     total = round(weighted_sum * 20)
     if vetoed:
-        grade = "D（一票否決）"
+        grade = "D（核心項缺失）"
     elif total >= 85:
-        grade = "A 優先尋訪"
+        grade = "A 可直接落地"
     elif total >= 70:
-        grade = "B 可培養"
+        grade = "B 基本可用"
     elif total >= 50:
-        grade = "C 謹慎"
+        grade = "C 有缺口"
     else:
         grade = "D 不匹配"
 
@@ -122,20 +122,20 @@ def compute(data, total_weight):
 def render(result):
     lines = []
     lines.append("=" * 56)
-    lines.append(f"匹配度總分: {result['total']}/100    分級: {result['grade']}")
+    lines.append(f"覆蓋度總分: {result['total']}/100    分級: {result['grade']}")
     if result["vetoed"]:
-        lines.append("⚠ 觸發一票否決：存在必備項得分 ≤2，預設 D 級，除非業務方明確豁免")
+        lines.append("⚠ 觸發一票否決：存在核心設計項得分 ≤2，預設 D 級，除非需求方明確豁免")
     if result["weight_normalized"]:
         lines.append("⚠ 權重之和不為 1.0，已自動正規化")
     lines.append("=" * 56)
-    lines.append(f"{'能力維度':<16}{'權重':>6}  {'級':<4}{'分':>3}  證據")
+    lines.append(f"{'設計維度':<16}{'權重':>6}  {'級':<4}{'分':>3}  證據")
     for d in result["details"]:
         lines.append(f"{d['name']:<16}{d['weight']:>6.2f}  {LEVEL_NAMES[d['level']]:<4}{d['score']:>3}  {d['evidence']}")
     lines.append("-" * 56)
     if result["strengths"]:
-        lines.append("優勢項(≥4分): " + ", ".join(d["name"] for d in result["strengths"]))
+        lines.append("強覆蓋項(≥4分): " + ", ".join(d["name"] for d in result["strengths"]))
     else:
-        lines.append("優勢項(≥4分): 無")
+        lines.append("強覆蓋項(≥4分): 無")
     if result["gaps"]:
         lines.append("缺口項(<3分): " + ", ".join(
             f"{d['name']}({d['score']}分)" for d in result["gaps"]))
@@ -145,7 +145,7 @@ def render(result):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="人才匹配度計算機")
+    parser = argparse.ArgumentParser(description="Agent 設計覆蓋度計算機")
     parser.add_argument("input", nargs="?", help="評分 JSON 檔案路徑（缺省由標準輸入讀取）")
     parser.add_argument("--json", action="store_true", help="輸出機器可讀 JSON")
     args = parser.parse_args()

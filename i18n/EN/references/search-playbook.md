@@ -1,73 +1,75 @@
-# Search Strategy Playbook
+# Real-World Job Design Research Playbook
 
-> Used with Steps 2 and 3 of the `recruit-web-sourcing` skill. Goal: cover talent supply information systematically within a limited number of search rounds.
+> Used at Step 2 of the `recruit-web-sourcing` skill. Goal: systematically understand how a real-world role is designed - responsibilities, requirements, workflow, collaboration, KPIs, toolstack - within a limited number of search rounds.
 
 ## 1. Channel Layering Matrix
 
-| Layer | Channel type | Typical channels | Primary use | Source quality |
-|-------|-------------|------------------|-------------|----------------|
-| L1 | Job boards | Boss Zhipin, Zhaopin, Liepin, Lagou, 51job; overseas: LinkedIn, Indeed, Glassdoor | Open roles, salary bands, requirements, talent density | High (first-party JDs) |
-| L2 | Social & professional communities | Maimai, Zhihu, GitHub, Stack Overflow, V2EX, Juejin, Behance/Dribbble (design) | Candidate leads, real work, technical influence | Medium-high (self-published) |
-| L3 | Competitor & industry moves | Competitor career pages, funding/product news, trade media | Competitor expansion direction, talent flow signals | Medium (needs cross-verification) |
-| L4 | Industry reports & data | Compensation surveys, talent market reports, platform white papers | Salary benchmarks, supply/demand trends | Medium (check publication date) |
+| Layer | Channel type | Typical channels | Main use | Source quality |
+|------|-------------|------------------|---------|----------------|
+| L1 | Job boards | Boss Zhipin, Zhaopin, Liepin, Lagou, 51job; overseas: LinkedIn, Indeed, Glassdoor | Role responsibilities, requirements, salary bands, hiring density | High (first-party JDs) |
+| L2 | Organizational design materials | Job descriptions, leveling systems, R&R tables, org charts, public company handbooks/wiki | Role positioning, reporting lines, responsibility boundaries | High (first-party, but rarely public) |
+| L3 | Practitioner communities | Maimai, Zhihu, V2EX, GitHub, Stack Overflow, Juejin, WeChat official accounts, tech blogs | Real workflows, collaboration styles, daily pain points, toolstack | Medium-high (self-published; watch for individual cases) |
+| L4 | Industry reports & methodologies | Consulting role models, HR methodologies, Agile/DevOps/ITIL practice frameworks, salary surveys | Design paradigms, KPIs, market benchmarks | Medium (mind publication dates and applicability) |
 
-**Execution order**: L1 first for supply density and salary bands, then L2/L3 to mine specific leads, and L4 last to calibrate market conclusions.
+**Execution order**: start with L1 for responsibilities and requirements, then L2/L3 for workflow, collaboration, and toolstack, and finally use L4 to calibrate design paradigms and KPIs.
 
-## 2. Building the Keyword Matrix
+## 2. Keyword Matrix Construction
 
-Cross-combine four word families, using 2-4 combinations per search round:
+Cross four word families, 2-4 combinations per round:
 
-| Word family | Description | Example (Senior Backend Engineer) |
-|-------------|-------------|-----------------------------------|
-| Role words | Synonyms and variants of the title | Backend Engineer, Server-side Engineer, Java Developer, Backend Engineer |
-| Skill words | Hard skills and toolchain | distributed systems, microservices, high concurrency, Kubernetes, Go, Spring Cloud |
-| Scenario words | Business scenarios and industry | e-commerce middle platform, payment systems, SaaS, fintech, ad systems |
-| Channel words | Sites and in-site targeting | site:zhipin.com, site:linkedin.com, site:github.com |
+| Family | Description | Example (Data Analyst) |
+|--------|-------------|------------------------|
+| Role words | Synonyms and variants of the job title | Data Analyst, Data Operations, BI Engineer |
+| Duty words | What the role does | user behavior analysis, reporting systems, A/B testing, metrics framework |
+| Scenario words | Business scenarios and industries | e-commerce, SaaS, fintech, ad delivery |
+| Design words | Job-design-related material | job description, responsibilities, requirements, performance review, OKR, leveling |
 
 **Combination examples**:
-- "senior backend engineer microservices high concurrency hiring" -> L1 supply
-- "site:github.com high-concurrency Java open source" -> L2 technical leads
-- "payment system architect hiring salary" -> salary band
+- "data analyst job responsibilities requirements hiring" -> probe L1 for duties and requirements
+- "data analyst day in the life workflow" -> mine L3 for the real daily routine
+- "data analyst performance review KPI OKR" -> check KPIs
+- 'site:zhihu.com "data analyst" "day in the life"' -> targeted practitioner sharing (on Chinese-language sites, run the query in Chinese)
 
 ## 3. Search Operator Cheat Sheet
 
-| Operator | Purpose | Example |
-|----------|---------|---------|
-| `site:` | Restrict to a site | `site:liepin.com algorithm engineer` |
-| `intitle:` | Term must appear in title | `intitle:hiring data analyst` |
-| `filetype:` | Restrict file type | `filetype:pdf compensation report 2025` |
+| Operator | Effect | Example |
+|----------|--------|---------|
+| `site:` | Restrict to a site | `site:linkedin.com data analyst` |
+| `intitle:` | Title must contain | `intitle:job description product manager` |
+| `filetype:` | Restrict file type | `filetype:pdf job description finance` |
 | `""` | Exact match | `"head of user growth"` |
-| `-` | Exclude noise | `hiring -training -security` |
-| Time filter | Control freshness | Prefer the last 3-12 months for news/roles |
+| `-` | Exclude noise | `data analyst -training -security` |
+| Time filter | Control freshness | JD/methodology searches prefer the last 3 years |
 
-## 4. Supply Density Assessment (how to judge "is talent easy to find?" in Step 3)
+## 4. Six-Element Job Design Collection Checklist
 
-Track four metrics per search round and record them in the sourcing report:
+Walk this table for every role studied; missing items get follow-up searches:
 
-1. **Open role volume**: order of magnitude of open roles on L1 channels (e.g., "~500+ open on Boss Zhipin")
-2. **Salary band**: mainstream range and percentiles (P25/P50/P75), timestamped
-3. **Talent clusters**: which companies/cities/communities the population concentrates in (competitor list)
-4. **Scarcity signals**: long-running postings, rising salaries, relaxed requirements (undersupply) or the opposite
+| Element | What to collect | Primary channels |
+|---------|----------------|-------------------|
+| Responsibilities | What they actually do, broken into executable actions | L1 JDs, L2 job descriptions |
+| Requirements | Knowledge, skills, experience, credentials | L1 JDs |
+| Workflow | Work steps, order, cadence, checkpoints | L3 practitioner sharing, L4 methodologies |
+| Collaboration | What comes in, what goes out, who they report to | L2 org charts, L3 |
+| KPIs | What "done well" means (quality/efficiency/outcome) | L4 methodologies, L1 JD nice-to-haves |
+| Toolstack | Tools, systems, templates used | L3, L1 JDs |
 
-**Conclusion tiers**:
-- Ample supply (high role volume, stable salaries) -> raise the bar moderately; focus screening on capability match
-- Tight supply (few roles, rising salaries, relaxed requirements) -> start early, widen alternative populations, raise the compensation budget
-- Structural scarcity (large pool but few meeting hard requirements) -> tighten veto-item priority, target the "nearest neighbor" population
+## 5. Research Paths by Role Type (Quick Reference)
 
-## 5. Common Role Sourcing Paths (quick reference)
-
-| Role type | Priority channels | Lead-mining tactics |
-|-----------|-------------------|---------------------|
-| Engineering (frontend/backend/algo) | L1 + GitHub/Juejin | Search open-source contributors and tech blog authors |
-| Product | L1 + Maimai/Zhihu | Search product-analysis authors and competitor product news |
-| Design | L1 + Behance/Dribbble | Browse portfolios directly; reverse-lookup authors by project type |
-| Operations/Marketing | L1 + WeChat accounts/Zhihu | Search bylines of well-known campaigns they ran |
-| Sales/BD | L1 + Maimai | Reverse-lookup by target customer segment: "who sold to similar customers" |
-| Corporate functions (HR/Finance/Legal) | L1 + vertical communities | Reverse-lookup by industry certifications (CPA, bar exam, etc.) |
+| Role type | Priority channels | Research tips |
+|-----------|-------------------|---------------|
+| Engineering (frontend/backend/algo) | L1 + GitHub/Juejin/tech blogs | Read JD skill requirements + engineers' own workflow and collaboration write-ups |
+| Product | L1 + Maimai/Zhihu/WeChat official accounts | Search for PMs' PRD process and requirement-review write-ups |
+| Design | L1 + Behance/Dribbble/Zcool | Read portfolio notes + designers' collaboration process write-ups |
+| Operations/Marketing | L1 + WeChat official accounts/Zhihu | Search for named retrospectives of famous campaigns (name + process) |
+| Sales/BD | L1 + Maimai/industry media | Reverse-lookup role design from target customer segments ("served similar clients") |
+| Functional (HR/finance/legal) | L1 + vertical communities + L4 | Reverse-lookup by industry credentials (CPA, bar qualification, etc.) |
+| Management | L2 + L4 + L3 | Focus on reporting lines, collaboration interfaces, and KPIs |
 
 ## 6. Search Discipline
 
-- Each round validates exactly one hypothesis; no kitchen-sink queries
-- Cross-verify every conclusion with at least two independent sources; for salary, prefer first-party open JDs over reports
-- Timestamp all market data as "data retrieved: YYYY-MM-DD"
-- Two consecutive empty rounds -> switch word families or channels; never repeat the same query more than twice
+- Each round tests one hypothesis; no "everything in one query"
+- Cross-verify every conclusion with at least two independent sources; duties and requirements primarily from L1 live JDs, reports as backup
+- Timestamp all research conclusions with "data retrieved: YYYY-MM-DD"
+- Two consecutive empty rounds -> switch word family or channel; never repeat the same query more than twice
+- For community content, distinguish individual cases from consensus: only treat a pattern as job-design evidence when multiple people describe it independently
